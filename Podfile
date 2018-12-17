@@ -8,7 +8,7 @@ target 'HeadyDemo' do
   # Pods for HeadyDemo
 
     pod 'SDWebImage'
-	pod 'ActionSheetPicker-3.0'
+    pod 'ActionSheetPicker-3.0'
     pod 'Alamofire'
     #pod 'KGModal'
 
