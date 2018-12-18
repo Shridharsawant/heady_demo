@@ -10,7 +10,7 @@ target 'HeadyDemo' do
     pod 'SDWebImage'
     pod 'ActionSheetPicker-3.0'
     pod 'Alamofire'
-    #pod 'KGModal'
+    pod 'MBProgressHUD'
 
   target 'HeadyDemoTests' do
     inherit! :search_paths

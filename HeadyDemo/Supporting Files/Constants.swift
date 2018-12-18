@@ -63,76 +63,11 @@ let RATE_DIALOG_NIB                                 = "RateDialogVC"
 // VIEW CONTROLLER IDENTIFIERS
 
 let CATEGORIES_VC_IDENTIFIER                        = "CategoriesVC"
-let HOME_NC_IDENTIFIER                              = "HomeNC"
-let TRACK_VC_IDENTIFIER                             = "TrackVC"
-let WEB_VC_IDENTIFIER                               = "WebViewController"
-let MILES_STOPS_VC                                  = "MilesStopViewController"
-let AGENCY_VC                                       = "ServiceProviderVC"
+let PRODUCT_LIST_VC_IDENTIFIER                      = "ProductListVC"
 
 // CELL IDENTIFIERS
 
 let CATEGORY_PARENT_TVC                             = "categoryParentCellIdentifier"
-let SCHEDULE_CELL_IDENTIFIER                        = "scheduleCellIdentifier"
-let FIND_FARE_CELL_IDENTIFIER                       = "findFareCellIdentifier"
-let TRIP_DETAIL_CELL_IDENTIFIER                     = "tripDetailCellIdentifier"
-let FIND_MY_RIDE_CELL_IDENTIFIER                    = "findMyRideCellIdentifier"
+let CATEGORY_CHILD_TVC                              = "categoryChildCellIdentifier"
+let PRODUCT_TVC_IDENTIFIER                          = "productTVCIdentifier"
 
-// NOTIFICATION NAMES
-
-let NC_REFRESH_ROUTE_LIST                           = "refreshRouteList"
-
-// nib NAMES
-
-let BOOKING_SUCCESS_NIB                             = "BookingSuccessPopup"
-
-
-let SCREEN_BOUNDS                                   = UIScreen.main.bounds
-
-//URLSs
-
-let GOOGLE_DIRECTION_BASE_URL                       = "https://maps.googleapis.com/maps/api/directions/json"
-
-let FAQ_URL                                         = "http://www.utwiz.com/App/gofaq.html"
-let TERMS_AND_CONDITION_URL                         = "http://www.utwiz.com/App/TermsConditions.html"
-let PRIVACY_POLICY_URL                              = "http://www.utwiz.com/App/Privacy.html"
-
-
-//STORYBOARDS
-
-let MAIN_STORYBOARD                                 = "Main"
-let OK_STORYBOARD                                   = "storyboard_ok"
-
-//CONTROLLERS
-
-let FIND_MY_RIDE_CONTROLLER                         = "FindMyRideViewController"
-let FAVOURITE_VC                                    = "FavoutireVC"
-let ROOT_CONTROLLER                                 = "rootController"
-let SERVICE_PROVIDER_VC                             = "ServiceProviderVC"
-let TOUR_VC                                         = "TourViewController"
-let TAB_VC                                          = "TabVC"
-let ROOT_NC                                         = "RootNC"
-let MORE_TVC                                        = "MoreTVC"
-let FEEDBACK_VC                                     = "RateViewController"
-let SETTINGS_VC                                     = "SettingsViewController"
-let ABOUT_VC                                        = "AboutViewController"
-let SERVICE_NC                                      = "ServiceNC"
-
-
-//NIB NAMES
-
-let SERVICE_PROVIDER_NIB                            = "ServiceProviderView"
-let SCHEDULES_NIB                                   = "SchedulesView"
-
-
-//CELL IDENTIFIERS
-
-let SERVICE_PROVIDER_CELL_IDENTIFIER                = "ServiceProviderCVC"
-let PROFILE_CELL_IDENTIFIER                         = "profileCellIdentifier"
-let SETTINGS_CELL_IDETIFIER                         = "settingsCellIdentifier"
-
-
-
-
-//GOOGLE KEYS
-
-let GOOGLE_MAP_TEST_API_KEY                         = "AIzaSyCJPv-zQqnxqkFA92g9LTOpztHH5jQ3Hxs"//AIzaSyCUQhqCnmk_dphk1eYorT9gOl5cs8BjaFk

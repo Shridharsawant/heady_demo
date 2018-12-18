@@ -1,15 +1,16 @@
 //
-//  CategoryParentTVC.swift
+//  CategoryChildTVC.swift
 //  HeadyDemo
 //
-//  Created by Shridhar Sawant on 17/12/18.
+//  Created by Shridhar Sawant on 18/12/18.
 //  Copyright © 2018 Shridhar Sawant. All rights reserved.
 //
 
 import UIKit
 
-class CategoryParentTVC: UITableViewCell {
+class CategoryChildTVC: UITableViewCell {
 
+    @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

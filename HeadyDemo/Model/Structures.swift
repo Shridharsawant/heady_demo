@@ -13,6 +13,8 @@ struct STCategory {
     var name = ""
     var products = [STProduct]()
     var child_categories = [Int]()
+    var has_parent = false
+    var is_expanded = false
 }
 
 struct STProduct {

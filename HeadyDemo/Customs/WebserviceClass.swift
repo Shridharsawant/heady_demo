@@ -20,7 +20,7 @@ class WebserviceClass {
                 showProgressHud(vc: vc)
             }
             
-            let serverUrl = DynamicAPI.shared.getBaseApiUrl()
+            let serverUrl = ""//DynamicAPI.shared.getBaseApiUrl()
             if let url = URL(string: serverUrl + "/" + functionName) {
                 
                 if requestDictionary != nil {
@@ -88,7 +88,7 @@ class WebserviceClass {
             if shouldShowLoader {
                 showProgressHud(vc: vc)
             }
-            let serverUrl = DynamicAPI.shared.getBaseApiUrl()
+            let serverUrl = ""//DynamicAPI.shared.getBaseApiUrl()
             if let url = URL(string: serverUrl + functionName) {
                 if requestDictionary != nil {
                     print("REQUEST - (" + functionName + ") : " + requestDictionary!.description)

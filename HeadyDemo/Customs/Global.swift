@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import CoreLocation
 import SDWebImage
-import KGModal
-import SAMKeychain
 
 class Global : NSObject {
     
@@ -30,25 +28,6 @@ class Global : NSObject {
         let okAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
         alert.addAction(okAction)
         vc.present(alert, animated: true, completion: nil)
-    }
-    
-    func getAttributedMessage(forMessage : String) -> NSAttributedString {
-        let attributedText = NSMutableAttributedString(string: forMessage)
-        return attributedText
-    }
-    
-    @objc func getUniqueDeviceIdentifierAsString() -> String {
-        if let appName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String {
-            if let uuid = SAMKeychain.password(forService: appName, account: ENCRYPTION_KEY) {
-                return uuid
-            }else {
-                if let strApplicationUUID = UIDevice.current.identifierForVendor?.uuidString {
-                    SAMKeychain.setPassword(strApplicationUUID, forService: appName, account: ENCRYPTION_KEY)
-                    return strApplicationUUID
-                }
-            }
-        }
-        return ""
     }
     
     func getStatusBarHeight() -> CGFloat {
@@ -79,30 +58,6 @@ class Global : NSObject {
         }
     }
     
-    func isValidEmail(email : String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
-    }
-    
-    func scaleImage(image:UIImage, toSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
-    
-    @objc func isLocationAvailable(controller : UIViewController) -> Bool {
-        if CLLocationManager.locationServicesEnabled() {
-            return true
-        }else{
-            showEnableLocationAlert(controller: controller)
-            return false
-        }
-    }
-    
     func loadImageIntoImageView(stringUrl : String?, imageView : UIImageView) {
         loadImageIntoImageView(stringUrl: stringUrl,
                                imageView: imageView,
@@ -122,20 +77,6 @@ class Global : NSObject {
         }
     }
     
-    func openKGModal(view : UIView) {
-        KGModal.sharedInstance().tapOutsideToDismiss = false
-        KGModal.sharedInstance().closeButtonType = .none
-        KGModal.sharedInstance().backgroundDisplayStyle = .solid
-        KGModal.sharedInstance().show(withContentView: view)
-    }
-    
-    func openKGModal(vc : UIViewController) {
-        KGModal.sharedInstance().tapOutsideToDismiss = false
-        KGModal.sharedInstance().closeButtonType = .none
-        KGModal.sharedInstance().backgroundDisplayStyle = .solid
-        KGModal.sharedInstance().show(withContentViewController: vc)
-    }
-    
     @objc func removeAllUserDefaults() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         /*let defs = UserDefaults.standard
@@ -153,17 +94,6 @@ class Global : NSObject {
             defs.removeObject(forKey: UD_USER_NAME)
             defs.removeObject(forKey: UD_PASSWORD)
         }*/
-    }
-    
-    @objc func showEnableLocationAlert(controller : UIViewController) {
-        let alert = UIAlertController(title: Global.shared.getAppName(),
-                                      message: "GPS location is required for this app to work. Please enable location on your phone settings and reopen the app.",
-                                      preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Ok",
-                                         style: .default,
-                                         handler: nil)
-        alert.addAction(cancelAction)
-        controller.present(alert, animated: true, completion: nil)
     }
     
     @objc func convertBase64toUIImage(base64String : String) -> UIImage? {
