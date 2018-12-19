@@ -133,7 +133,7 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 for category in categories {
                     var categoryModel = STCategory()
                     
-                    let id = category[WS_ID] as? Int ?? 0
+                    let category_id = category[WS_ID] as? Int ?? 0
                     let name = category[WS_NAME] as? String ?? ""
                     if let products = category[WS_PRODUCTS] as? [[String : Any]] {
                         var productsArray = [STProduct]()
@@ -141,7 +141,7 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                             
                             var productModel = STProduct()
                             
-                            let id = product[WS_ID] as? Int ?? 0
+                            let productId = product[WS_ID] as? Int ?? 0
                             let name = product[WS_NAME] as? String ?? ""
                             let date_added = product[WS_DATE_ADDED] as? String ?? ""
                             if let variants = product[WS_VARIANTS] as? [[String : Any]] {
@@ -158,6 +158,11 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                                     variantModel.price = price
                                     variantModel.size = size
                                     variantArray.append(variantModel)
+                                    DBManager.getSharedInstance()?.insertVariants(Int32(productId),
+                                                                                  variantId: Int32(id),
+                                                                                  color: color,
+                                                                                  size: size,
+                                                                                  price: String(price))
                                 }
                                 productModel.variants = variantArray
                             }
@@ -170,27 +175,61 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                                 taxModel.name = name
                                 taxModel.value = value
                                 productModel.tax = taxModel
+                                DBManager.getSharedInstance()?.insertTax(Int32(productId),
+                                                                         name: name,
+                                                                         value: String(value))
                             }
                             
-                            productModel.id = id
+                            productModel.id = productId
                             productModel.name = name
                             productModel.date_added = date_added
+                            
+                            DBManager.getSharedInstance()?.insertProducts(Int32(category_id),
+                                                                          productId: Int32(productId),
+                                                                          name: name,
+                                                                          dateAdded: date_added)
                             productsArray.append(productModel)
                         }
                         categoryModel.products = productsArray
                     }
                     let child_categories = category[WS_CHILD_CATEGORIES] as? [Int] ?? []
                     
-                    categoryModel.id = id
+                    categoryModel.id = category_id
                     categoryModel.name = name
                     categoryModel.child_categories = child_categories
+                    
+                    let stringArray = child_categories.map { String($0) }
+                    let strArr = stringArray.joined(separator: ",")
+                    
+                    DBManager.getSharedInstance()?.insertCategory(Int32(category_id),
+                                                                  name: name,
+                                                                  child_CATEGORIES: strArr)
+                    
                     categoriesArray.append(categoryModel)
                 }
                 parseCategories()
             }
             
             if let rankings = dictionary[WS_RANKINGS] as? [[String : Any]] {
-                
+                for rankingType in rankings {
+                    if let ranking = rankingType[WS_RANKING] as? String {
+                        var rankingKey = ""
+                        if ranking == "Most Viewed Products" {
+                            rankingKey = WS_VIEW_COUNT
+                        } else if ranking == "Most OrdeRed Products" {
+                            rankingKey = WS_ORDER_COUNT
+                        } else if ranking == "Most ShaRed Products" {
+                            rankingKey = WS_SHARES
+                        }
+                        
+                        if let products = rankingType[WS_PRODUCTS] as? [[String : Any]] {
+                            for product in products {
+                                let id = product[WS_ID] as? Int ?? 0
+                                let rank = product[rankingKey] as? Double ?? 0
+                            }
+                        }
+                    }
+                }
             }
             
         } else {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04342D3121CA075700C4A1BD /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04342D3021CA075700C4A1BD /* DBManager.m */; };
+		04342D3721CA162000C4A1BD /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04342D3621CA162000C4A1BD /* Variant.swift */; };
 		0458C1CE21C75E1E00A85E07 /* ProductListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C1CD21C75E1E00A85E07 /* ProductListVC.swift */; };
 		0480B97F21C3F383006D2634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480B97E21C3F383006D2634 /* AppDelegate.swift */; };
 		0480B98121C3F383006D2634 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480B98021C3F383006D2634 /* ViewController.swift */; };
@@ -57,6 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04342D2F21CA075700C4A1BD /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		04342D3021CA075700C4A1BD /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		04342D3321CA079800C4A1BD /* HeadyDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeadyDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		04342D3621CA162000C4A1BD /* Variant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
 		0458C1CD21C75E1E00A85E07 /* ProductListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListVC.swift; sourceTree = "<group>"; };
 		0480B97B21C3F383006D2634 /* HeadyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0480B97E21C3F383006D2634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +137,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04342D2E21CA075700C4A1BD /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				04342D2F21CA075700C4A1BD /* DBManager.h */,
+				04342D3021CA075700C4A1BD /* DBManager.m */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
 		0480B97221C3F383006D2634 = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +246,7 @@
 				04F8900921C7EC7200A0297D /* Structures.swift */,
 				04F8900D21C7EC7200A0297D /* ServiceModel.swift */,
 				04F8900E21C7EC7200A0297D /* Reachability */,
+				04342D3621CA162000C4A1BD /* Variant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +263,7 @@
 		04F8901721C7EC8100A0297D /* Customs */ = {
 			isa = PBXGroup;
 			children = (
+				04342D2E21CA075700C4A1BD /* DBManager */,
 				04F8901821C7EC8100A0297D /* RateView.swift */,
 				04F8901921C7EC8100A0297D /* CustomView.swift */,
 				04F8901A21C7EC8100A0297D /* Global.swift */,
@@ -264,6 +281,7 @@
 			children = (
 				04F8902C21C7ECC400A0297D /* Constants.swift */,
 				04F8902D21C7ECC400A0297D /* ServiceMethods.swift */,
+				04342D3321CA079800C4A1BD /* HeadyDemo-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -525,9 +543,11 @@
 				04F8902221C7EC8100A0297D /* Global.swift in Sources */,
 				04F8901621C7EC7200A0297D /* Reachability.m in Sources */,
 				04D6236F21C8E72A00CE25C2 /* ProductTVC.swift in Sources */,
+				04342D3121CA075700C4A1BD /* DBManager.m in Sources */,
 				04F8902421C7EC8100A0297D /* Enums.swift in Sources */,
 				04F8900421C7EC6400A0297D /* MNGButton.m in Sources */,
 				04F8901221C7EC7200A0297D /* Structures.swift in Sources */,
+				04342D3721CA162000C4A1BD /* Variant.swift in Sources */,
 				0480B98121C3F383006D2634 /* ViewController.swift in Sources */,
 				04F8902721C7EC8100A0297D /* TextfieldExtension.swift in Sources */,
 				04F8902621C7EC8100A0297D /* WebserviceClass.swift in Sources */,
@@ -724,6 +744,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shri.HeadyDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/HeadyDemo/Supporting Files/HeadyDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -744,6 +765,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shri.HeadyDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/HeadyDemo/Supporting Files/HeadyDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
