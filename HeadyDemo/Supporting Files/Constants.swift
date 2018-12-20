@@ -10,16 +10,6 @@ import Foundation
 import UIKit
 
 
-// keys
-
-let GOOGLE_MAP_API_KEY                              = "AIzaSyCJPv-zQqnxqkFA92g9LTOpztHH5jQ3Hxs"
-let ENCRYPTION_KEY                                  = "UTGoPlexi"
-
-// Constants
-
-let PARTNER_ID                                      = 4456//4441//4441//4451
-let APP_TYPE                                        = 1
-
 let APP_DELEGATE                                    = UIApplication.shared.delegate as! AppDelegate
 let IS_TESTING_MODE                                 = false
 let THEME_COLOR                                     = UIColor(red: 0.0/255.0, green: 53.0/255.0, blue: 115.0/255.0, alpha: 1.0)
@@ -29,7 +19,6 @@ let STANDARD_DATE_FORMAT                            = "MM/dd/yyyy HH:mm"
 let DEFAULT_DATE_FORMAT                             = "MM/dd/yyyy"
 let DEFAULT_TIME_FORMAT                             = "HH:mm"
 let DEFAULT_ANIMATION_DURATION                      = 0.4
-let IMAGE_BASE_URL                                  = "https://reservations.goldentouchofny.com/"
 let GOOGLE_DOMAIN_URL                               = "https://maps.googleapis.com"
 let MAP_BASE_URL                                    = "/maps/api/directions/json?"
 
@@ -64,6 +53,7 @@ let RATE_DIALOG_NIB                                 = "RateDialogVC"
 
 let CATEGORIES_VC_IDENTIFIER                        = "CategoriesVC"
 let PRODUCT_LIST_VC_IDENTIFIER                      = "ProductListVC"
+let PRODUCT_VC_IDENTIFIER                           = "ProductVC"
 
 // CELL IDENTIFIERS
 

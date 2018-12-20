@@ -162,5 +162,9 @@
 
 - (NSArray *)getCategories;
 
+-(BOOL)updateRankforProduct:(int)productId
+                    rankKey:(NSString*)rankKey
+                      value:(NSString*)value;
+
 
 @end

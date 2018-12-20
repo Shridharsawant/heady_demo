@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,44 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        addSortButton()
+    }
+    
+    func addSortButton() {
+        let sortButton = UIBarButtonItem(image: UIImage(named: "sort_icon"),
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(sortAction))
+        navigationItem.rightBarButtonItem = sortButton
+    }
+    
+    @objc func sortAction() {
+        let options = ["Most Ordered", "Most Viewed", "Most Shared"]
+        let picker = ActionSheetStringPicker(title: "Select parameter",
+                                             rows: options,
+                                             initialSelection: 0,
+                                             doneBlock: { (picker, position, data) in
+                                                self.sortArray(key: options[position])
+        },
+                                             cancel: { (picker) in
+                                                
+        },
+                                             origin: view)
+        picker?.show()
+    }
+    
+    func sortArray(key : String) {
+        productsArray = productsArray.sorted(by: { (a, b) -> Bool in
+            if key == "Most Ordered" {
+                return a.order_count > b.order_count
+            } else if key == "Most Viewed" {
+                return a.view_count > b.view_count
+            } else if key == "Most Shared" {
+                return a.shares > b.shares
+            }
+            return true
+        })
+        productsTableView.reloadData()
     }
     
     // MARK: - TABLEVIEW METHODS
@@ -39,14 +78,22 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.variantLabel.text = ""
             cell.priceLabel.text = ""
         }
-        
-        
+        cell.viewLabel.text = String(product.view_count.clean) + " views"
+        cell.shareLabel.text = String(product.shares.clean) + " shares"
+        cell.orderLabel.text = "(" + String(product.order_count.clean) + " orders)"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func openProductVC(product : STProduct)  {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: PRODUCT_VC_IDENTIFIER) as? ProductVC {
+            vc.product = product
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     /*

@@ -23,6 +23,9 @@ struct STProduct {
     var date_added = ""
     var variants = [STVariant]()
     var tax = STTax()
+    var view_count : Double = 0
+    var order_count : Double = 0
+    var shares : Double = 0
 }
 
 struct STVariant {

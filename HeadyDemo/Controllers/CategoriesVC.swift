@@ -20,8 +20,100 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        callService()
+        //callService()
+        checkIfDataExistsLocally()
     }
+    
+    func checkIfDataExistsLocally() {
+        categoriesArray.removeAll()
+        if let categoriesArr = DBManager.getSharedInstance()?.getCategories() {
+            if categoriesArr.isEmpty {
+                getProducts()
+                return
+            }
+            for item in categoriesArr {
+                if let category = item as? [String : Any] {
+                    var categoryType = STCategory()
+                    let categoryIdStr = category["categoryId"] as? String ?? ""
+                    categoryType.id = Int(categoryIdStr) ?? 0
+                    categoryType.name = category["name"] as? String ?? ""
+                    if let childCategoriesString = category["child_categories"] as? String {
+                        if childCategoriesString.trimmingCharacters(in: .whitespaces) != "" {
+                            let childCategoriesStrArr = childCategoriesString.components(separatedBy: ",")
+                            if childCategoriesStrArr.count > 0 {
+                                let childCategoriesArr = childCategoriesStrArr.map { Int($0)!}
+                                categoryType.child_categories = childCategoriesArr
+                            }else {
+                                categoryType.child_categories = []
+                            }
+                        }
+                    }
+                    categoryType.is_expanded = false
+                    if let prodArr = DBManager.getSharedInstance()?.getProducts(categoryIdStr) {
+                        var productsArr = [STProduct]()
+                        if prodArr.count > 0 {
+                            for item in prodArr {
+                                if let product = item as? [String : Any] {
+                                    var productType = STProduct()
+                                    productType.name = product["name"] as? String ?? ""
+                                    let productIdStr = product["productId"] as? String ?? ""
+                                    productType.id = Int(productIdStr) ?? 0
+                                    productType.date_added = product["date_added"] as? String ?? ""
+                                    
+                                    let viewCountStr = product["view_count"] as? String ?? ""
+                                    let order_countStr = product["order_count"] as? String ?? ""
+                                    let sharesStr = product["share"] as? String ?? ""
+                                    
+                                    
+                                    productType.view_count = Double(viewCountStr) ?? 0
+                                    productType.shares = Double(sharesStr) ?? 0
+                                    productType.order_count = Double(order_countStr) ?? 0
+                                    
+                                    if let taxArr = DBManager.getSharedInstance()?.getTax(productIdStr) {
+                                        if taxArr.count > 0 {
+                                            for item in taxArr {
+                                                if let tax = item as? [String : Any] {
+                                                    var taxType = STTax()
+                                                    taxType.name = tax["name"] as? String ?? ""
+                                                    taxType.value = tax["value"] as? Double ?? 0
+                                                    productType.tax = taxType
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if let varArr = DBManager.getSharedInstance()?.getVariants(productIdStr) {
+                                        if varArr.count > 0 {
+                                            var variantArray = [STVariant]()
+                                            for item in varArr {
+                                                if let variant = item as? [String : Any] {
+                                                    
+                                                    var variantType = STVariant()
+                                                    variantType.color = variant["color"] as? String ?? ""
+                                                    variantType.size = variant["size"] as? String ?? ""
+                                                    let priceStr = variant["price"] as? String ?? ""
+                                                    variantType.price = Double(priceStr) ?? 0
+                                                    variantType.id = variant["id"] as? Int ?? 0
+                                                    variantArray.append(variantType)
+                                                }
+                                            }
+                                            productType.variants = variantArray
+                                        }
+                                    }
+                                    productsArr.append(productType)
+                                }
+                            }
+                        }
+                        categoryType.products = productsArr
+                    }
+                    categoriesArray.append(categoryType)
+                }
+            }
+            parseCategories()
+        }
+    }
+    
+    
+    // MARK: - FETCH METHODS
     
     func callService() {
         getProducts()
@@ -207,7 +299,7 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     
                     categoriesArray.append(categoryModel)
                 }
-                parseCategories()
+                //parseCategories()
             }
             
             if let rankings = dictionary[WS_RANKINGS] as? [[String : Any]] {
@@ -226,6 +318,9 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                             for product in products {
                                 let id = product[WS_ID] as? Int ?? 0
                                 let rank = product[rankingKey] as? Double ?? 0
+                                DBManager.getSharedInstance()?.updateRankforProduct(Int32(id),
+                                                                                    rankKey: rankingKey,
+                                                                                    value: String(rank))
                             }
                         }
                     }
@@ -235,6 +330,7 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         } else {
             
         }
+        checkIfDataExistsLocally()
     }
     
     func parseCategories() {
