@@ -87,6 +87,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        openProductVC(product: productsArray[indexPath.row])
     }
     
     func openProductVC(product : STProduct)  {

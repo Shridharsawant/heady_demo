@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0410F81021CCC35200D743EC /* VariantCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410F80F21CCC35200D743EC /* VariantCVC.swift */; };
 		04342D3121CA075700C4A1BD /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04342D3021CA075700C4A1BD /* DBManager.m */; };
 		04342D3721CA162000C4A1BD /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04342D3621CA162000C4A1BD /* Variant.swift */; };
 		0458C1CE21C75E1E00A85E07 /* ProductListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C1CD21C75E1E00A85E07 /* ProductListVC.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0410F80F21CCC35200D743EC /* VariantCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantCVC.swift; sourceTree = "<group>"; };
 		04342D2F21CA075700C4A1BD /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		04342D3021CA075700C4A1BD /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		04342D3321CA079800C4A1BD /* HeadyDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeadyDemo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				04F8903121C7EE5D00A0297D /* CategoryParentTVC.swift */,
 				04D6236C21C8C63900CE25C2 /* CategoryChildTVC.swift */,
 				04D6236E21C8E72A00CE25C2 /* ProductTVC.swift */,
+				0410F80F21CCC35200D743EC /* VariantCVC.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				0480B98121C3F383006D2634 /* ViewController.swift in Sources */,
 				04F8902721C7EC8100A0297D /* TextfieldExtension.swift in Sources */,
 				04F8902621C7EC8100A0297D /* WebserviceClass.swift in Sources */,
+				0410F81021CCC35200D743EC /* VariantCVC.swift in Sources */,
 				04D6236D21C8C63900CE25C2 /* CategoryChildTVC.swift in Sources */,
 				04F8902521C7EC8100A0297D /* Extensions.swift in Sources */,
 				04F8902321C7EC8100A0297D /* DriverRateView.swift in Sources */,

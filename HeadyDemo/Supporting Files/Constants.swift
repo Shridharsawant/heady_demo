@@ -60,4 +60,5 @@ let PRODUCT_VC_IDENTIFIER                           = "ProductVC"
 let CATEGORY_PARENT_TVC                             = "categoryParentCellIdentifier"
 let CATEGORY_CHILD_TVC                              = "categoryChildCellIdentifier"
 let PRODUCT_TVC_IDENTIFIER                          = "productTVCIdentifier"
+let VARIANT_CVC_IDENTIFIER                          = "VariantCVC"
 
